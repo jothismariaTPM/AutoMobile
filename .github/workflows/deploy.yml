@@ -1,1 +1,57 @@
+name: Auto Deploy to Hostinger VPS 
 
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Deploy to VPS
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.SERVER_PORT }}
+          script: |
+            echo "---------------------------------------"
+            echo "🚀 Starting Deployment..."
+            echo "---------------------------------------"
+
+            cd /var/www/AutoMobile
+
+            echo "📌 Pulling latest code from GitHub..."
+            git pull origin main
+
+            echo "---------------------------------------"
+            echo "📦 Building Frontend..."
+            echo "---------------------------------------"
+
+            cd client
+            npm install
+            npm run build
+
+            echo "⬆️ Deploying frontend to /var/www/html"
+            rm -rf /var/www/html/*
+            cp -r build/* /var/www/html/
+
+            echo "---------------------------------------"
+            echo "🔧 Updating Backend..."
+            echo "---------------------------------------"
+
+            cd ../server
+            npm install --production
+
+            echo "🔁 Restarting PM2 backend..."
+            pm2 restart project-backend
+
+            echo "---------------------------------------"
+            echo "🎉 Deployment Finished Successfully!"
+            echo "---------------------------------------"
