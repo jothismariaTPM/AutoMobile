@@ -18,8 +18,9 @@ jobs:
         with:
           host: ${{ secrets.SERVER_IP }}
           username: ${{ secrets.SERVER_USER }}
-          key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SERVER_PORT }}
+          key: |
+            ${{ secrets.SSH_KEY }}
           script: |
             echo "---------------------------------------"
             echo "🚀 Starting Deployment..."
@@ -27,7 +28,7 @@ jobs:
 
             cd /var/www/AutoMobile
 
-            echo "📌 Pulling latest code from GitHub..."
+            echo "📌 Pulling latest code..."
             git pull origin main
 
             echo "---------------------------------------"
