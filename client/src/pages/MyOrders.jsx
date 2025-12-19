@@ -7,7 +7,7 @@ const MyOrders = () => {
   const [myOrders, setMyOrders] = useState([]);
   const { currency, axios, country, inrToAed, backend } = useAppContext();
 
-  const [loading,setLoading] = useState(true)
+  const [loading,setLoading] = useState(true);
 
   const fetchMyOrders = async () => {
     try {
