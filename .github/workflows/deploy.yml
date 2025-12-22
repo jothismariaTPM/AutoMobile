@@ -48,7 +48,6 @@ jobs:
             echo "---------------------------------------"
 
             cd ../server
-            npm install --production
 
             echo "🔁 Restarting PM2 backend..."
             pm2 restart project-backend
