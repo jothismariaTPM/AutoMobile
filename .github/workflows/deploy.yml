@@ -1,4 +1,4 @@
-name: Auto Deploy to Hostinger VPS 
+name: Auto Deploy to Hostinger VPS
 
 on:
   push:
@@ -19,9 +19,10 @@ jobs:
           host: ${{ secrets.SERVER_IP }}
           username: ${{ secrets.SERVER_USER }}
           port: ${{ secrets.SERVER_PORT }}
-          key: |
-            ${{ secrets.SSH_KEY }}
+          key: ${{ secrets.SSH_KEY }}
           script: |
+            set -e
+
             echo "---------------------------------------"
             echo "🚀 Starting Deployment..."
             echo "---------------------------------------"
@@ -36,11 +37,18 @@ jobs:
             echo "---------------------------------------"
 
             cd client
-            npm install
+
+            if [ ! -d "node_modules" ]; then
+              echo "📦 Installing frontend dependencies..."
+              npm install
+            fi
+
             npm run build
 
-            echo "⬆️ Deploying frontend to /var/www/html"
-            rm -rf /var/www/html/*
+            echo "⬆️ Deploying frontend safely..."
+            rm -rf /var/www/html_backup
+            mv /var/www/html /var/www/html_backup || true
+            mkdir -p /var/www/html
             cp -r build/* /var/www/html/
 
             echo "---------------------------------------"
@@ -50,7 +58,9 @@ jobs:
             cd ../server
 
             echo "🔁 Restarting PM2 backend..."
-            pm2 restart project-backend
+            pm2 restart project-backend || pm2 start index.js --name project-backend
+
+            pm2 save
 
             echo "---------------------------------------"
             echo "🎉 Deployment Finished Successfully!"
