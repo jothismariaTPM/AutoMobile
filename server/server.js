@@ -17,10 +17,15 @@ const app = express();
 const port = process.env.PORT || 4000;
 
 await connectDB();
-await connectCloudinary();
+//await connectCloudinary();
 
 //Allow mulitple origins
-const allowedOrigins = ['http://localhost:5173']
+const allowedOrigins = [
+    'http://localhost:5173',
+    'https://pullmancarspare.com',
+    'https://www.pullmancarspare.com',
+    'https://app.pullmancarspare.com'
+];
 
 app.post('/stripe',express.raw({type: 'application/json'}), stripeWebhooks)
 app.use("/uploads", express.static("uploads"));
