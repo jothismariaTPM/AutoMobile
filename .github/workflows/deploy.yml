@@ -45,11 +45,7 @@ jobs:
 
             npm run build
 
-            echo "⬆️ Deploying frontend safely..."
-            rm -rf /var/www/html_backup
-            mv /var/www/html /var/www/html_backup || true
-            mkdir -p /var/www/html
-            cp -r build/* /var/www/html/
+            echo "✅ Frontend built at client/dist (Nginx serves this directly)"
 
             echo "---------------------------------------"
             echo "🔧 Updating Backend..."
