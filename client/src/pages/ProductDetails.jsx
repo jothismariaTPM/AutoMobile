@@ -189,7 +189,7 @@ const handlers = useSwipeable({
           </div>
 
           <p className="text-base font-medium mt-6">About Product</p>
-          <ul className="list-disc ml-4 text-gray-500/70 space-y-2">
+          <ul className="list-disc ml-4 text-gray-500/70 space-y-2.5">
            {product.description
              ?.filter(desc => desc && desc.trim() !== "")
              .map((desc, index) => (
