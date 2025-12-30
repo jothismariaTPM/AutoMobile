@@ -215,16 +215,9 @@ const AddProduct = () => {
         </div>
 
         {/* Brand + Packaging */}
-        <Input label="Product Brand" value={productBrand} setter={setProductBrand} />
-
-        <div className="flex flex-col gap-1">
-          <label className="font-medium">Packaging Details</label>
-          <textarea
-            rows={3}
-            value={packagingDetails}
-            onChange={(e) => setPackagingDetails(e.target.value)}
-            className="outline-none py-2 px-3 border rounded resize-none"
-          ></textarea>
+         <div className="flex gap-5 flex-wrap">
+          <Input label="Product Brand" value={productBrand} setter={setProductBrand} />
+          <Input label="Packaging Details" value={packagingDetails} setter={setPackagingDetails} />
         </div>
 
         {/* Warranty + Delivery Time */}
