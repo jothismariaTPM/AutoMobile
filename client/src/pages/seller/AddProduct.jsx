@@ -139,7 +139,7 @@ const AddProduct = () => {
         {/* Description */}
                 <div className="flex flex-col gap-1">
                     <label className="text-base font-medium" htmlFor="product-description">Product Description</label>
-                    <textarea onChange={(e)=>setDescription(e.target.value)} value={description} id="product-description" rows={4} className="outline-none md:py-2.5 py-2 px-3 rounded border border-gray-500/40 resize-none" placeholder="Type here"></textarea>
+                    <textarea onChange={(e)=>setDescription(e.target.value)} value={description} id="product-description" rows={4} className="outline-none md:py-2.5 py-2 px-3 rounded border resize-none" placeholder="Type here"></textarea>
                 </div>
 
         {/* Category + Car Model */}
@@ -160,19 +160,49 @@ const AddProduct = () => {
 
           <Input label="Car Model" value={carModel} setter={setCarModel} required />
         </div>
-                  {/* Part Number + Programming */}
+
+         {/* Part Number */}
+         <div className="flex flex-col gap-1">
+          <label className="font-medium">Part Number</label>
+          <textarea
+            rows={3}
+            value={partNumber}
+            onChange={(e) => setPartNumber(e.target.value)}
+            className="outline-none py-2 px-3 border rounded resize-none"
+          ></textarea>
+        </div>
+         
+         {/*  Programming */}
         <div className="flex gap-5 flex-wrap">
-          <Input label="Part Number" value={partNumber} setter={setPartNumber} />
           <Input label="Programming" value={programming} setter={setProgramming} />
         </div>
 
-        {/* Compatible Models + Compatible Part Number */}
+        {/* Compatible Models + Compatible Part Number 
         <div className="flex gap-5 flex-wrap">
           <Input label="Compatible Models" value={compatibleModels} setter={setCompatibleModels} />
           <Input label="Compatible Part Number" value={compatiblePartNumber} setter={setCompatiblePartNumber} />
+        </div> */}
+
+        {/* Compatible Models + Compatible Part Number */}
+        <div className="flex flex-col gap-1">
+          <label className="font-medium">Compatible Models</label>
+          <textarea
+            rows={3}
+            value={compatibleModels}
+            onChange={(e) => setCompatibleModels(e.target.value)}
+            className="outline-none py-2 px-3 border rounded resize-none"
+          ></textarea>
         </div>
 
-  
+        <div className="flex flex-col gap-1">
+          <label className="font-medium">Compatible Part Number</label>
+          <textarea
+            rows={3}
+            value={compatiblePartNumber}
+            onChange={(e) => setCompatiblePartNumber(e.target.value)}
+            className="outline-none py-2 px-3 border rounded resize-none"
+          ></textarea>
+        </div>
 
          {/* Condition */}
         <div className="flex flex-col gap-1">
