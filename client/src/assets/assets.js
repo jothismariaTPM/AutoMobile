@@ -136,7 +136,7 @@ export const footerLinks = [
     links: [
       { text: "Home", url: "#" },
       { text: "Best Sellers", url: "/products" },
-      {/*{ text: "Offers & Deals", url: "#" },*/}
+      //{ text: "Offers & Deals", url: "#" },
       { text: "Contact Us", url: "#" }
     ],
   },
@@ -153,7 +153,7 @@ export const footerLinks = [
     title: "Follow Us",
     links: [
       { text: "Instagram", url: "https://www.instagram.com/pullmaneurocarspare/" },
-      {/*{ text: "Twitter", url: "#" },*/}
+      //{ text: "Twitter", url: "#" },
       { text: "Facebook", url: "https://www.facebook.com/profile.php?id=61583701505050" },
       { text: "YouTube", url: "#" },
     ],
