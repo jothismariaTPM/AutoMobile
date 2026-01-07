@@ -134,7 +134,7 @@ const MyOrders = () => {
                   </p>
                 </div>
                 
-                <p className="text-primary text-lg font-medium">
+                <p className="font-medium">
                   Amount :
                   {country === 'AE'
                     ? ` AED ${
