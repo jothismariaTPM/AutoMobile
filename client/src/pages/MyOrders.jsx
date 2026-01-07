@@ -74,7 +74,7 @@ const MyOrders = () => {
             </span>
 
             <div className="flex flex-col mt-1">
-              <span>
+              <span className='text-primary text-lg font-medium'>
                 Total Amount :
                 {country === 'AE'
                   ? ` AED ${convertINRtoAED(order?.amount)}`
@@ -125,7 +125,11 @@ const MyOrders = () => {
                   <p>
                     Date:{' '}
                     {order?.createdAt
-                      ? new Date(order.createdAt).toLocaleDateString()
+                      ? new Date(order.createdAt).toLocaleDateString('en-GB', {
+                        day: '2-digit',
+                        month: 'short',
+                        year: 'numeric',
+                      })
                       : 'N/A'}
                   </p>
                 </div>
