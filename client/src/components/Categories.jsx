@@ -68,24 +68,30 @@ const Categories = () => {
 
           return (
             <div
-              key={category._id || category.name}
-              className="flex-none w-32 cursor-pointer px-3 py-1 rounded-lg 
-                         flex flex-col items-center bg-[#E1F5EC]"
-              onClick={() => {
-                navigate(`/products/${safeCategory}`);
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }}
-            >
-              <img
-                src={`${backend}${category.image}`}
-                alt={category.name}
-                className="transition hover:scale-105 max-w-21"
-              />
-              <p className="text-sm font-medium text-center mt-2 truncate w-full">
-  {category.name}
-</p>
+  key={category._id || category.name}
+  className="flex-none w-32 min-h-[130px] cursor-pointer 
+             px-3 py-2 rounded-lg 
+             flex flex-col items-center justify-start 
+             bg-[#E1F5EC]"
+  onClick={() => {
+    navigate(`/products/${safeCategory}`);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }}
+>
+  <img
+    src={`${backend}${category.image}`}
+    alt={category.name}
+    className="h-14 w-14 object-contain transition hover:scale-105"
+  />
 
-            </div>
+  <p
+    className="text-sm font-medium text-center mt-2 
+               leading-tight break-words line-clamp-2"
+  >
+    {category.name}
+  </p>
+</div>
+
           );
         })}
       </div>
