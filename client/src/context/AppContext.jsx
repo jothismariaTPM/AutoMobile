@@ -108,11 +108,7 @@ export const AppContextProvider = ({ children }) => {
 
   // ------------------ ADD TO CART ------------------
   const addToCart = (productId) => {
-  if(!isUserLogin){
-   toast.error('Login to add Product to Cart');
-   setShowUserLogin(true);  
-   return;
-  }
+  
   const updatedCart = {
     ...cartItems,
     [productId]: (cartItems[productId] || 0) + 1,
