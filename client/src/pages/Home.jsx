@@ -6,7 +6,7 @@ import BottomBanner from '../components/BottomBanner'
 import NewsLetter from '../components/NewsLetter'
 import UnderMaintenance from '../components/UnderMaintenance'
 import RecentlyViewed from '../components/RecentlyViewed'
-
+import CompanyLogo from '../components/CompanyLogo'
 
 const Home = () => {
   return (
@@ -16,6 +16,7 @@ const Home = () => {
         <BestSeller/>
         <RecentlyViewed/>
         <BottomBanner/>
+        <CompanyLogo/>
         <NewsLetter/>
        {/* <UnderMaintenance/> */}
     </div>
