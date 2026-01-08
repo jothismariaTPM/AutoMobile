@@ -66,6 +66,20 @@ const handleCategoryClick = () => {
   }
 };
 
+const handleContactClick = () => {
+  if (location.pathname !== "/") {
+    navigate("/");
+    setTimeout(() => {
+      const section = document.getElementById("footer");
+      section?.scrollIntoView({ behavior: "smooth" });
+    }, 300);
+  } else {
+    document
+      .getElementById("footer")
+      ?.scrollIntoView({ behavior: "smooth" });
+  }
+};
+
    return (
         <nav className="flex items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 py-4 border-b border-gray-300 bg-white relative transition-all">
 
@@ -77,8 +91,8 @@ const handleCategoryClick = () => {
             <div className="hidden sm:flex items-center gap-8">
                 <NavLink to="/">Home</NavLink>
                 <button onClick={handleCategoryClick}>Categories</button>
-                <NavLink to="/products">All Products</NavLink>
-                <NavLink to="/">Contact</NavLink>
+                <NavLink to="/products">Products</NavLink>
+                <button onClick={handleContactClick}>Contact</button>
 
                 <div className="hidden lg:flex items-center text-sm gap-2 border border-gray-300 px-3 rounded-full">
                     <input onChange={(e)=>setSearchQuery(e.target.value)} className="py-1.5 w-full bg-transparent outline-none placeholder-gray-500" type="text" placeholder="Search products" />
@@ -95,7 +109,7 @@ const handleCategoryClick = () => {
                     <button className="absolute -top-2 -right-3 text-xs text-white bg-primary w-[18px] h-[18px] rounded-full">{getCartCount()}</button>
                 </div>
 
-                {!user ? (<button onClick={()=>setShowUserLogin(true)} className="cursor-pointer px-8 py-2 bg-primary hover:bg-primary-dull transition text-white rounded-full">
+                {!user ? (<button onClick={()=>navigate("/login")} className="cursor-pointer px-8 py-2 bg-primary hover:bg-primary-dull transition text-white rounded-full">
                     Login
                 </button>) : (
                     <div className='relative group'>
@@ -132,7 +146,7 @@ const handleCategoryClick = () => {
                }
                 <NavLink to="/" onClick={()=>setOpen(false)} className="block">Contact</NavLink>
                 {!user ? (
-                    <button onClick={()=>{setOpen(false); setShowUserLogin(true);}} className="cursor-pointer px-6 py-2 mt-2 bg-primary hover:bg-primary-dull transition text-white rounded-full text-sm">
+                    <button onClick={()=>{setOpen(false); navigate("/login");}} className="cursor-pointer px-6 py-2 mt-2 bg-primary hover:bg-primary-dull transition text-white rounded-full text-sm">
                       Login
                    </button>
                     ) : (
