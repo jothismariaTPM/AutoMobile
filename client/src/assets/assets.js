@@ -50,6 +50,28 @@ import shopping37 from './shopping37-preview.png'
 import shopping46 from './shopping46-preview.png'
 import shopping47 from './shopping47-preview.png'
 import underconstruction from './underconstruction.png'
+import audi from './brand_logos/audi.webp'
+import bentley from './brand_logos/bentley.webp'
+import bmw from './brand_logos/bmw.webp'
+import cadillac from './brand_logos/cadillac.webp'
+import chevrolet from './brand_logos/chevrolet.webp'
+import dodge from './brand_logos/dodge.webp'
+import ford from './brand_logos/ford.webp'
+import honda from './brand_logos/Honda.webp'
+import hyundai from './brand_logos/Hyundai.webp'
+import infiniti from './brand_logos/infiniti.webp'
+import kia from './brand_logos/kia.webp'
+import lamborgini from './brand_logos/lamborgini.webp'
+import lincoln from './brand_logos/lincoln.webp'
+import mazda from './brand_logos/mazda.webp'
+import mercedes from './brand_logos/mercedes.webp'
+import mitsubishi from './brand_logos/mitsubishi.webp'
+import nissan from './brand_logos/nissan.webp'
+import porsche from './brand_logos/porsche.webp'
+import rollsroyce from './brand_logos/rolls-royce.webp'
+import toyota from './brand_logos/toyota.webp'
+import volkswagen from './brand_logos/volkswagen.webp'
+import volvo from './brand_logos/volvo.webp'
 
 export const assets = {
   logo,
@@ -183,7 +205,92 @@ export const features = [
   },
 ];
 
-
+export const brandLogos = [
+  {
+    icon: audi,
+    title: "Fast & Reliable Shipping",
+  },
+  {
+    icon: bentley,
+    title: "Quality Guaranteed",
+  },
+  {
+    icon: bmw,
+    title: "Affordable Prices",
+  },
+  {
+    icon: cadillac,
+    title: "Trusted by Thousands",
+  },
+   {
+    icon: chevrolet,
+    title: "Fast & Reliable Shipping",
+  },
+  {
+    icon: dodge,
+    title: "Quality Guaranteed",
+  },
+  {
+    icon: ford,
+    title: "Affordable Prices",
+  },
+  {
+    icon: honda,
+    title: "Trusted by Thousands",
+  },
+   {
+    icon: hyundai,
+    title: "Fast & Reliable Shipping",
+  },
+  {
+    icon: infiniti,
+    title: "Quality Guaranteed",
+  },
+  {
+    icon: kia,
+    title: "Affordable Prices",
+  },
+  {
+    icon: lamborgini,
+    title: "Trusted by Thousands",
+  },
+  {
+    icon: mazda,
+    title: "Trusted by Thousands",
+  },
+   {
+    icon: mercedes,
+    title: "Fast & Reliable Shipping",
+  },
+  {
+    icon: mitsubishi,
+    title: "Quality Guaranteed",
+  },
+  {
+    icon: nissan,
+    title: "Affordable Prices",
+  },
+  {
+    icon: porsche,
+    title: "Trusted by Thousands",
+  },
+   {
+    icon: rollsroyce,
+    title: "Fast & Reliable Shipping",
+  },
+  {
+    icon: toyota,
+    title: "Quality Guaranteed",
+  },
+  {
+    icon: volkswagen,
+    title: "Affordable Prices",
+  },
+  {
+    icon: volvo,
+    title: "Trusted by Thousands",
+  },
+];
 
 export const dummyAddress = [
   {
