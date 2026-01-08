@@ -5,6 +5,11 @@ import User from '../models/User.js'
 import Payment from "../models/Payment.js";
 import Address from '../models/Address.js'
 
+const generateOrderId = () => {
+  return 'PM' + Math.floor(10000000 + Math.random() * 90000000);
+};
+
+
 export const placeOrderCOD = async (req,res) => {
     try{
         const { userId, items, addressId} = req.body;
@@ -18,19 +23,29 @@ export const placeOrderCOD = async (req,res) => {
         //Add Tax Charge
         amount += Math.floor(amount * 0.02);
 
+        // ✅ Generate Custom Order ID
+        const customOrderId = generateOrderId();
+
         const order = await Order.create({
             userId,
             items,
             amount,
-            address:addressId
+            address:addressId,
+            orderNumber: customOrderId, 
         })
 
         await Payment.create({
           orderId:order._id,
+          orderNumber: customOrderId, 
           payment_type: "cod",
           payment_status: "pending",
           amount
         })
+
+        // ✅ CLEAR USER CART
+    await User.findByIdAndUpdate(userId, {
+      $set: { cartItems: {} }
+    });
 
         return res.json({success:true, message: "Order Placed Successfully"})
     }catch(error){
@@ -69,15 +84,20 @@ export const placeOrderStripe = async (req,res) => {
 
     amount += taxAmount;
 
+     // ✅ Generate Custom Order ID
+        const customOrderId = generateOrderId();
+
         const order = await Order.create({
             userId,
             items,
             amount,
             address:addressId,
+            orderNumber: customOrderId, 
         })
 
         await Payment.create({
           orderId:order._id,
+          orderNumber: customOrderId, 
           payment_type: "online",
           payment_status: "pending",
           amount
