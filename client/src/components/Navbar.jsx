@@ -18,7 +18,7 @@ const logout = async () => {
       toast.success(data.message)
       setUser(null);
       navigate('/')
-      // ✅ Refresh page to reinitialize auth state
+      // Refresh page to reinitialize auth state
       setTimeout(() => {
         window.location.reload();
       }, 500);
