@@ -37,11 +37,7 @@ useEffect(()=>{
 },[searchQuery])
 
 const cart = () => {
-    if(user){
-        navigate("/cart")
-    }else{
-        toast.error('Login To Access')
-    }
+    navigate("/cart")
 }
 
 const wishlist = () => {
