@@ -23,6 +23,10 @@ const Login = () => {
           setUser(data.user)
           setShowUserLogin(false)
           toast.success(`${state} Success`)
+              // Refresh page to reinitialize auth state
+          setTimeout(() => {
+          window.location.reload();
+          }, 500);
         }else{
          toast.error(data.message)
         }
