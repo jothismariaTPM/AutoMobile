@@ -160,7 +160,7 @@ const Cart = () => {
     return (priceINR * inrToAed).toFixed(2);
   };
 
-    return user && products.length > 0 && cartItems ? (
+    return products.length > 0 && cartItems && (
         <div className="flex flex-col md:flex-row mt-16">
             <div className='flex-1 max-w-4xl'>
                 <h1 className="text-3xl font-medium mb-6">
@@ -308,18 +308,7 @@ const Cart = () => {
                 </button>
             </div>
         </div>
-    ) : (
-        <div className="mt-24 text-center text-gray-500">
-    <h2 className="text-2xl font-medium">Login to Access your Cart</h2>
-    <button
-      onClick={() => navigate('/')}
-      className="mt-4 text-primary hover:underline"
-    >
-      Continue Shopping
-    </button>
-  </div>
-    )
-
+    ) 
 }
 
 export default Cart
