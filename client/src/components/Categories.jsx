@@ -6,6 +6,9 @@ const Categories = () => {
   const { navigate, axios, backend } = useAppContext();
   const [categories, setCategories] = useState([]);
   const scrollRef = useRef(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+const [canScrollRight, setCanScrollRight] = useState(true);
+
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -21,6 +24,17 @@ const Categories = () => {
 
     fetchCategories();
   }, [axios]);
+
+  const handleScroll = () => {
+  const el = scrollRef.current;
+  if (!el) return;
+
+  setCanScrollLeft(el.scrollLeft > 0);
+  setCanScrollRight(
+    el.scrollLeft + el.clientWidth < el.scrollWidth - 5
+  );
+};
+
 
    const scrollLeft = () => {
     scrollRef.current?.scrollBy({ left: -300, behavior: 'smooth' });
@@ -38,23 +52,30 @@ const Categories = () => {
   <div className="relative">
 
     {/* Left Arrow */}
-    <button
-      onClick={scrollLeft}
-      className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 z-10 
-                  shadow-md p-2 rounded-full bg-gray-100"
-    >
-      <ChevronLeft size={22} />
-    </button>
+    {/* Left Arrow */}
+<button
+  onClick={scrollLeft}
+  disabled={!canScrollLeft}
+  className={`hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 z-10 
+    p-2 rounded-full shadow-md bg-white
+    ${canScrollLeft ? 'cursor-pointer hover:bg-gray-100' : 'opacity-40 cursor-not-allowed'}
+  `}
+>
+  <ChevronLeft size={22} />
+</button>
 
      <button
       onClick={scrollLeft}
-      className="md:hidden absolute left-0 top-1/2 -translate-y-1/2 z-10 
-                  shadow-md p-2 rounded-full bg-gray-100"
+      disabled={!canScrollLeft}
+      className={`md:hidden absolute left-0 top-1/2 -translate-y-1/2 z-10 
+    p-2 rounded-full shadow-md bg-white
+    ${canScrollLeft ? 'cursor-pointer hover:bg-gray-100' : 'opacity-40 cursor-not-allowed'}
+  `}
     >
       <ChevronLeft size={16} />
     </button>
 
-      <div ref={scrollRef} className="overflow-x-auto no-scrollbar">
+      <div ref={scrollRef} onScroll={handleScroll} className="overflow-x-auto no-scrollbar">
         <div className="flex gap-6 mt-3 py-2 whitespace-nowrap">
           {categories.map((category) => {
             const safeCategory = String(category.path || category.name || "")
@@ -86,18 +107,24 @@ const Categories = () => {
         </div>
       </div>
           {/* Right Arrow */}
-    <button
-      onClick={scrollRight}
-      className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 z-10 
-                  shadow-md p-2 rounded-full bg-gray-100"
-    >
-      <ChevronRight size={22} />
-    </button>
+   {/* Right Arrow */}
+<button
+  onClick={scrollRight}
+  disabled={!canScrollRight}
+  className={`hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 z-10 
+    p-2 rounded-full shadow-md bg-white
+    ${canScrollRight ? 'cursor-pointer hover:bg-gray-100' : 'opacity-40 cursor-not-allowed'}
+  `}
+>
+  <ChevronRight size={22} />
+</button>
      {/* Right Arrow mobile*/}
     <button
       onClick={scrollRight}
-      className="md:hidden absolute right-0 top-1/2 -translate-y-1/2 z-10 
-                  shadow-md p-2 rounded-full bg-gray-100"
+     className={`md:hidden  absolute right-0 top-1/2 -translate-y-1/2 z-10 
+    p-2 rounded-full shadow-md bg-white
+    ${canScrollRight ? 'cursor-pointer hover:bg-gray-100' : 'opacity-40 cursor-not-allowed'}
+  `}
     >
       <ChevronRight size={16} />
     </button>
