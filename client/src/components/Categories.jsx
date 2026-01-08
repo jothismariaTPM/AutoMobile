@@ -81,9 +81,10 @@ const Categories = () => {
                 alt={category.name}
                 className="transition hover:scale-105 max-w-21"
               />
-              <p className="text-sm font-medium text-center mt-1">
-                {category.name}
-              </p>
+              <p className="text-sm font-medium text-center mt-2 truncate w-full">
+  {category.name}
+</p>
+
             </div>
           );
         })}
