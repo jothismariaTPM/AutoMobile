@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 
 const paymentSchema = new mongoose.Schema({
     orderId: { type: mongoose.Schema.Types.ObjectId, ref: "Order", required: true },
+    orderNumber:{type:String, required:true},
     payment_type: { type: String, enum: ["card", "upi", "netbanking", "cod", "online"], required: true },
     payment_status: { type: String, enum: ["pending", "completed", "failed", "refunded"], default: "pending" },
     transaction_id: { type: String, default: null },
