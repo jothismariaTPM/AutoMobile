@@ -164,7 +164,7 @@ const StateAutoComplete = ({ country, value, handleChange }) => {
 /* -------------------- MAIN -------------------- */
 
 const AddAddress = () => {
-  const { axios, navigate } = useAppContext()
+  const { axios, navigate, isUserLogin } = useAppContext()
 
   const [address, setAddress] = useState({
   firstName: '',
@@ -214,6 +214,11 @@ const AddAddress = () => {
   const onSubmitHandler = async (e) => {
     e.preventDefault()
     try {
+      if(!isUserLogin){
+      toast.error('Login to add Address');
+      navigate("/login");  
+      return;
+      } 
       const { data } = await axios.post('/api/address/add', { address })
       if (data.success) {
         toast.success(data.message)
