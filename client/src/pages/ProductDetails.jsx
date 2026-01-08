@@ -93,7 +93,7 @@ const handlers = useSwipeable({
     //console.log("producID: ",productId)
   if(!isUserLogin){
    toast.error('Login to add to wishlist');
-   setShowUserLogin(true);  
+   navigate("/login");  
    return;
   }
   try{
