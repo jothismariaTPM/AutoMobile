@@ -9,7 +9,7 @@ import { useSwipeable } from "react-swipeable";
 import { addRecentView } from "../utils/recentViews";
 
 const ProductDetails = () => {
-  const { products, navigate, currency, backend, addToCart, axios, setWishlistItems, wishlistItems, country, inrToAed } = useAppContext();
+  const { products, navigate, currency, backend, addToCart, axios, setWishlistItems, setShowUserLogin, isUserLogin, wishlistItems, country, inrToAed } = useAppContext();
   const { id } = useParams();
 
   const [relatedProducts, setRelatedProducts] = useState([]);
@@ -91,6 +91,11 @@ const handlers = useSwipeable({
 
   const addToWishlist = async (productId) => {
     //console.log("producID: ",productId)
+  if(!isUserLogin){
+   toast.error('Login to add to wishlist');
+   setShowUserLogin(true);  
+   return;
+  }
   try{
    const {data} = await axios.post("/api/wishlist/add", { productId });
    if(data.success){

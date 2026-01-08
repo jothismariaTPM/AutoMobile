@@ -16,6 +16,7 @@ export const AppContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isSeller, setIsSeller] = useState(false);
   const [showUserLogin, setShowUserLogin] = useState(false);
+  const [isUserLogin,setIsUserLogin] = useState(false);
   const [products, setProducts] = useState([]);
   const [cartItems, setCartItems] = useState({});
   const [wishlistItems, setWishlistItems] = useState([]);
@@ -60,6 +61,7 @@ export const AppContextProvider = ({ children }) => {
 
       if (data.success) {
         const safeCart = data.user.cartItems || {};
+        setIsUserLogin(true)
         setUser(data.user);
         setCartItems(safeCart);
         setWishlistItems(data.user.wishlist || []);
@@ -106,6 +108,11 @@ export const AppContextProvider = ({ children }) => {
 
   // ------------------ ADD TO CART ------------------
   const addToCart = (productId) => {
+  if(!isUserLogin){
+   toast.error('Login to add Product to Cart');
+   setShowUserLogin(true);  
+   return;
+  }
   const updatedCart = {
     ...cartItems,
     [productId]: (cartItems[productId] || 0) + 1,
@@ -208,6 +215,7 @@ export const AppContextProvider = ({ children }) => {
     setIsSeller,
     showUserLogin,
     setShowUserLogin,
+    isUserLogin,
     products,
     fetchProducts,
     currency,
