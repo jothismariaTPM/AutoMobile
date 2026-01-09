@@ -82,6 +82,11 @@ const Cart = () => {
     e.preventDefault(); // prevent card click navigation
 
     try {
+
+      if(!user){
+         removeFromCart(productId);
+      }
+       
     const response = await axios.post("/api/cart/remove", { productId });
 
     if (response.data.success) {
