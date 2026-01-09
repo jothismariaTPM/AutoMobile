@@ -119,6 +119,9 @@ const handlers = useSwipeable({
     return (priceINR * inrToAed).toFixed(2);
   };
 
+  const hasOwnBullet = (text) => {
+  return /^[\s]*([-•*–—])\s+/.test(text);
+};
 
   return (
     <div className="mt-12">
@@ -194,13 +197,21 @@ const handlers = useSwipeable({
           </div>
 
           <p className="text-base font-medium mt-6">About Product</p>
-          <ul className="list-disc ml-4 text-gray-500/70 space-y-2.5">
-           {product.description
-             ?.filter(desc => desc && desc.trim() !== "")
-             .map((desc, index) => (
-             <li key={index}>{desc}</li>
-          ))}
-         </ul>
+         <div className="text-gray-500/70 space-y-1">
+  {product.description
+    ?.filter(desc => desc && desc.trim() !== "")
+    .map((desc, index) =>
+      hasOwnBullet(desc) ? (
+        <p key={index} className="ml-1">
+          {desc}
+        </p>
+      ) : (
+        <ul key={index} className="list-disc ml-4">
+          <li>{desc}</li>
+        </ul>
+      )
+    )}
+</div>
 
 
           <div className="mt-4">
