@@ -65,6 +65,7 @@ const handleCategoryClick = () => {
 const handleContactClick = () => {
   if (location.pathname !== "/") {
     navigate("/");
+    setOpen(false);
     setTimeout(() => {
       const section = document.getElementById("footer");
       section?.scrollIntoView({ behavior: "smooth" });
