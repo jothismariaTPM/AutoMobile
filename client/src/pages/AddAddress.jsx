@@ -164,12 +164,13 @@ const StateAutoComplete = ({ country, value, handleChange }) => {
 /* -------------------- MAIN -------------------- */
 
 const AddAddress = () => {
-  const { axios, navigate, isUserLogin } = useAppContext()
+  const { axios, navigate, isUserLogin, user } = useAppContext()
+  console.log("user: ",user)
 
   const [address, setAddress] = useState({
-  firstName: '',
+  firstName:  '',
   lastName: '',
-  email: '',
+  email:  '',
   street: '',
   city: '',
   country: 'India',   // ✅ default
@@ -178,6 +179,15 @@ const AddAddress = () => {
   phone: '+91 ',      // ✅ default phone
 })
 
+useEffect(() => {
+  if (user) {
+    setAddress(prev => ({
+      ...prev,
+      firstName: user.name || '',
+      email: user.email || '',
+    }))
+  }
+}, [user])
 
   /* ---------- CHANGE ---------- */
 
@@ -218,7 +228,8 @@ const AddAddress = () => {
       toast.error('Login to add Address');
       navigate("/login");  
       return;
-      } 
+      }
+
       const { data } = await axios.post('/api/address/add', { address })
       if (data.success) {
         toast.success(data.message)
@@ -242,11 +253,11 @@ const AddAddress = () => {
       <div className='flex-1 max-w-md'>
          <form onSubmit={onSubmitHandler} className='space-y-3 mt-6 text-sm'>
             <div className='grid grid-cols-2 gap-4'>
-                <InputField handleChange={handleChange} address={address} name='firstName' type='text' placeholder='First Name'/>
-                <InputField handleChange={handleChange} address={address} name='lastName' type='text' placeholder='Last Name'/>
+                <InputField name="firstName" value={address.firstName} handleChange={handleChange} placeholder="First Name"/>
+                <InputField name="lastName" value={address.lastName} handleChange={handleChange} placeholder="Last Name"/>
             </div>
-            <InputField handleChange={handleChange} address={address} name='email' type='email' placeholder='Email address'/>
-          
+            <InputField name="email" type="email" value={address.email} handleChange={handleChange} placeholder="Email address"/>
+
              <SelectField
               name="country"
               value={address.country}
@@ -255,31 +266,36 @@ const AddAddress = () => {
               options={COUNTRIES}
             />
             <div className='grid grid-cols-2 gap-4'>
-               <InputField handleChange={handleChange} address={address} name='city' type='text' placeholder='City'/>
+               <InputField name="city" value={address.city} handleChange={handleChange} placeholder="City"/>
+
               {/* <InputField handleChange={handleChange} address={address} name='state' type='text' placeholder='State'/>*/}
                <StateAutoComplete
-  country={address.country}
-  value={address.state}
-  handleChange={handleChange}
-/>
+                country={address.country}
+                value={address.state}
+                handleChange={handleChange}
+               />
             </div>  
-             <InputField handleChange={handleChange} address={address} name='street' type='text' placeholder='Street'/>
+             <InputField name="street" value={address.street} handleChange={handleChange} placeholder="Street"/>
+
             <div className='grid grid-cols-2 gap-4'>
               {/* <InputField handleChange={handleChange} address={address} name='zipcode' type='number' placeholder='Zip code'/> */}
               <InputField
               name="zipcode"
-              type="number"
+              type="text"
+              inputMode="numeric"
               placeholder={address.country === 'UAE' ? 'P.O. Box' : 'PIN Code'}
               value={address.zipcode}
               handleChange={handleChange}
             />
-             <InputField handleChange={handleChange} address={address} name='phone' type='text' placeholder='Phone'/>
+             <InputField name="phone" value={address.phone} handleChange={handleChange} placeholder="Phone"/>
+
               {/* <InputField handleChange={handleChange} address={address} name='country' type='text' placeholder='Country'/>*/}
             </div>    
             <button className='w-full mt-6 bg-primary text-white py-3 hover:bg-primary-dull transition cursor-pointer uppercase'>Save address</button>
          </form>
       </div>
       <img src={assets.add_address_iamge} alt="Add_Address" />
+      {/*<img src={assets.shopping_cart} alt="Add_Address" className='w-[100vh]'/>*/}
    </div>
     </div>
   )
