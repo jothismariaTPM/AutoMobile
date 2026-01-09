@@ -72,6 +72,12 @@ import rollsroyce from './brand_logos/rolls-royce.webp'
 import toyota from './brand_logos/toyota.webp'
 import volkswagen from './brand_logos/volkswagen.webp'
 import volvo from './brand_logos/volvo.webp'
+import hero1 from './hero1.jpg'
+import hero2 from './hero2.jpg'
+import hero3 from './hero3.jpg'
+import hero4 from './hero4.jpg'
+import hero5 from './hero5.jpg'
+import hero6 from './hero6.jpg'
 
 export const assets = {
   logo,
@@ -110,6 +116,7 @@ export const assets = {
   car6,
   shopping,  shopping15, shopping16, shopping17, shopping18, 
   shopping22, shopping23, shopping33,  shopping36, shopping37, shopping46, shopping47,
+   hero1,hero2,hero3,hero4,hero5,hero6,
 };
 
 export const categories = [
