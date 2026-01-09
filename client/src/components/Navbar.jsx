@@ -141,7 +141,9 @@ const handleContactClick = () => {
                {
                 user &&  <NavLink to="/my-orders" onClick={()=>setOpen(false)} className="block">My Orders</NavLink>
                }
-                <NavLink to="/" onClick={()=>setOpen(false)} className="block">Contact</NavLink>
+                     {/*<NavLink to="/" onClick={()=>setOpen(false)} className="block">Contact</NavLink>*/}
+                     
+                <button onClick={handleContactClick}>Contact</button>
                 {!user ? (
                     <button onClick={()=>{setOpen(false); navigate("/login");}} className="cursor-pointer px-6 py-2 mt-2 bg-primary hover:bg-primary-dull transition text-white rounded-full text-sm">
                       Login
